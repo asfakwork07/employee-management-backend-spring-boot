@@ -7,4 +7,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
+    // Check duplicate email
+    boolean existsByEmail(String email);
+
+    // Check duplicate phone
+    boolean existsByPhone(String phone);
+
 }
