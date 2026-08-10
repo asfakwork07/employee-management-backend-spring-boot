@@ -2,7 +2,7 @@ package com.asfak.employee_management_backend.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-
+import com.asfak.employee_management_backend.role.entity.Role;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -40,6 +40,10 @@ public class Employee {
 
     @Column(nullable = false)
     private BigDecimal salary;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id")
+    private Role role;
 
     @Column(name = "joining_date", nullable = false)
     private LocalDate joiningDate;

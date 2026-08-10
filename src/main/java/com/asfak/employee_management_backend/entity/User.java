@@ -19,15 +19,14 @@ public class User {
 
     private String role;
 
-    public User() {
-    }
+    @Column(nullable = false)
+    private boolean enabled = true;
 
-    public User(Long id, String name, String email, String password, String role) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.role = role;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
+
+    public User() {
     }
 
     public Long getId() {
@@ -68,5 +67,21 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }

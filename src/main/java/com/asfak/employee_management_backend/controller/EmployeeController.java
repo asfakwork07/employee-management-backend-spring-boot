@@ -1,12 +1,13 @@
 package com.asfak.employee_management_backend.controller;
 
+import com.asfak.employee_management_backend.dto.EmployeeResponse;
 import com.asfak.employee_management_backend.entity.Employee;
 import com.asfak.employee_management_backend.service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
+import org.springframework.security.core.Authentication;
 import java.util.List;
 
 @RestController
@@ -28,7 +29,7 @@ public class EmployeeController {
 
     // Get All Employees
     @GetMapping
-    public ResponseEntity<List<Employee>> getAllEmployees() {
+    public ResponseEntity<List<EmployeeResponse>> getAllEmployees() {
         return ResponseEntity.ok(employeeService.getAllEmployees());
     }
 
@@ -55,7 +56,8 @@ public class EmployeeController {
 
         return ResponseEntity.ok("Employee deleted successfully.");
     }
-//    @PostMapping("/import")
+
+    //    @PostMapping("/import")
 //    public ResponseEntity<String> importExcel(
 //            @RequestParam("file") MultipartFile file) {
 //
@@ -64,12 +66,22 @@ public class EmployeeController {
 //        return ResponseEntity.ok("Employees imported successfully.");
 //
 //    }
-@PostMapping("/import")
-public ResponseEntity<String> importExcel(
-        @RequestParam("file") MultipartFile file) {
+    @PostMapping("/import")
+    public ResponseEntity<String> importExcel(
+            @RequestParam("file") MultipartFile file) {
 
-    String message = employeeService.importEmployees(file);
+        String message = employeeService.importEmployees(file);
 
-    return ResponseEntity.ok(message);
-}
+        return ResponseEntity.ok(message);
+    }
+
+    @GetMapping("/me")
+    public EmployeeResponse getMyProfile(
+            Authentication authentication
+    ) {
+
+        return employeeService.getMyProfile(
+                authentication.getName()
+        );
+    }
 }
