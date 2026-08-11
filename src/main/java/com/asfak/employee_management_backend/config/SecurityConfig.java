@@ -49,6 +49,9 @@ public class SecurityConfig {
 
                         .requestMatchers(
                                 "/api/auth/login",
+                                "/api/auth/forgot-password",
+                                "/api/auth/verify-otp",
+                                "/api/auth/reset-password",
                                 "/swagger-ui/**",
                                 "/swagger-ui.html",
                                 "/v3/api-docs/**"
@@ -78,6 +81,11 @@ public class SecurityConfig {
                         )
 
                         .requestMatchers(
+                                "/api/ai/admin/**"
+                        )
+                        .hasRole("ADMIN")
+
+                        .requestMatchers(
                                 HttpMethod.GET,
                                 "/api/ai/performance/me"
                         )
@@ -85,6 +93,8 @@ public class SecurityConfig {
                                 "ADMIN",
                                 "EMPLOYEE"
                         )
+
+
 
                         // ================================
                         // AI - ADMIN ACCESS
