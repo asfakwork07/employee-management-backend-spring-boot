@@ -94,7 +94,13 @@ public class SecurityConfig {
                                 "EMPLOYEE"
                         )
 
-
+                        .requestMatchers(
+                                "/api/ai/payroll/**"
+                        )
+                        .hasAnyRole(
+                                "ADMIN",
+                                "EMPLOYEE"
+                        )
 
                         // ================================
                         // AI - ADMIN ACCESS
