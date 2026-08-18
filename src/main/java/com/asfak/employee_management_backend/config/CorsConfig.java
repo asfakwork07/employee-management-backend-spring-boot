@@ -17,7 +17,7 @@ public class CorsConfig {
 
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOrigins(List.of("http://localhost:4200","http://localhost:5173", "https://employee-management-cyan-xi.vercel.app","https://employee-management-react-frontend-six.vercel.app/","https://main.d1h74msfvm0mvx.amplifyapp.com/"));
+        config.setAllowedOrigins(List.of("http://localhost:4200","http://localhost:5173","http://localhost:8100", "https://employee-management-cyan-xi.vercel.app","https://employee-management-react-frontend-six.vercel.app/","https://main.d1h74msfvm0mvx.amplifyapp.com/"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
